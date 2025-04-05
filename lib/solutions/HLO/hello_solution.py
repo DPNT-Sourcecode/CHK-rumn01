@@ -10,7 +10,4 @@ class HelloSolution:
             raise ValueError(
                 "Invalid input: friend_name must be a valid unicode string"
             )
-        return "Hello, World!"
-
-
-
+        return f"Hello, {friend_name}!"
