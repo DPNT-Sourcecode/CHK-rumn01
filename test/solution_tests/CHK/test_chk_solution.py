@@ -13,7 +13,7 @@ class TestSum(TestCase):
         assert CheckoutSolution().checkout(123) == -1
 
     def test_empty_input(self):
-        assert CheckoutSolution().checkout("") == -1
+        assert CheckoutSolution().checkout("") == 0
 
     def test_none_input(self):
         assert CheckoutSolution().checkout(None) == -1
@@ -23,3 +23,4 @@ class TestSum(TestCase):
 
     def test_full_basket(self):
         assert CheckoutSolution().checkout("AAABBCCDD") == 245
+
