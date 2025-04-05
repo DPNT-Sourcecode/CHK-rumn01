@@ -2,8 +2,10 @@ class CheckoutSolution:
 
     ITEM_TOTAL_CALCULATIONS = {
         "A": lambda x: min(
+            # 3A for 130
             (x // 3) * 130 + (x % 3) * 50,
             x * 50,
+            # 5A for 200
             (x // 5) * 200 + (x % 5) * 50,
             x * 50,
         ),
@@ -31,5 +33,6 @@ class CheckoutSolution:
             total += self.ITEM_TOTAL_CALCULATIONS[item](count)
 
         return total
+
 
 
