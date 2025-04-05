@@ -47,6 +47,3 @@ class TestSum(TestCase):
             SumSolution().compute(None, 5)
         with self.assertRaises(ValueError):
             SumSolution().compute(5, None)
-
-
-

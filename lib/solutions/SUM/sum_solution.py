@@ -41,5 +41,3 @@ class SumSolution:
                 f"{integer_lower_limit} and {integer_upper_limit}"
             )
         return x + y
-
-
