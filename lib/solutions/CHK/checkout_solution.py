@@ -5,6 +5,15 @@ class Item:
         self.offers = offers
         self.cross_offers = cross_offers
 
+    def total_price(self, count):
+        return self.price * count
+    
+    def total_offer_price(self, count):
+        return sum(offer.value * (count // offer.multiplier) for offer in self.offers)
+    
+    def total_cross_offer_price(self, count, items):
+        return sum(offer.value * (count // offer.multiplier) for offer in self.cross_offers)
+
 
 class Offer:
     def __init__(self, multiplier, value):
@@ -78,4 +87,5 @@ class CheckoutSolution:
             )
 
         return total
+
 
