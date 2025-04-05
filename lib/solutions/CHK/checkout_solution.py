@@ -1,3 +1,11 @@
+class Item:
+    def __init__(self, sku, price, offers, cross_offers):
+        self.sku = sku
+        self.price = price
+        self.offers = offers
+        self.cross_offers = cross_offers
+
+    
 class CheckoutSolution:
 
     ITEM_TOTAL_CALCULATIONS = {
@@ -33,6 +41,7 @@ class CheckoutSolution:
             total += self.ITEM_TOTAL_CALCULATIONS[item](count)
 
         return total
+
 
 
 
