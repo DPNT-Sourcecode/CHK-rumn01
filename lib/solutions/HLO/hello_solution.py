@@ -10,11 +10,9 @@ class HelloSolution:
             raise ValueError(
                 "Invalid input: friend_name must be a valid unicode string"
             )
-        if len(
-            friend_name_split := friend_name.split(".")
-        ) > 1:
+        if len(friend_name_split := friend_name.split(".")) > 1:
             if friend_name_split[0].lower() in {"mr", "mrs", "ms", "miss"}:
                 return f"Hello, {friend_name}!"
-            raise ValueError("Invalid input: friend_name cannot be empty")
-        return f"Hello, World!"
+        return "Hello, World!"
+
 
