@@ -22,13 +22,24 @@ class SumSolution:
         Raises:
             ValueError: If inputs are not integers between 0 and 100
         """
-        if not isinstance(x, int) or not 0 <= x <= 101:
+        integer_lower_limit = 0
+        integer_upper_limit = 100
+        if (
+            not isinstance(x, int)
+            or not integer_lower_limit <= x <= integer_upper_limit
+        ):
             raise ValueError(
-                "Invalid input: x must be an integer between 0 and 101"
+                f"Invalid input: x must be an integer between "
+                f"{integer_lower_limit} and {integer_upper_limit}"
             )
-        if not isinstance(y, int) or not 0 <= y <= 101:
+        if (
+            not isinstance(y, int)
+            or not integer_lower_limit <= y <= integer_upper_limit
+        ):
             raise ValueError(
-                "Invalid input: y must be an integer between 0 and 101"
+                f"Invalid input: x must be an integer between "
+                f"{integer_lower_limit} and {integer_upper_limit}"
             )
         return x + y
+
 
