@@ -4,7 +4,7 @@ from solutions.CHK.checkout_solution import CheckoutSolution
 class TestSum(TestCase):
 
     def test_invalid_sku_with_valid_skus(self): 
-        assert CheckoutSolution().checkout("ABCDAE") == -1
+        assert CheckoutSolution().checkout("ABCDAZ") == -1
 
     def test_non_unicode_input(self):
         assert CheckoutSolution().checkout("é") == -1
@@ -23,3 +23,4 @@ class TestSum(TestCase):
 
     def test_full_basket(self):
         assert CheckoutSolution().checkout("AAABBCCDD") == 245
+    
