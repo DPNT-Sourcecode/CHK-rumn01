@@ -5,22 +5,34 @@ class Item:
         self.offers = offers
         self.cross_offers = cross_offers
 
-    
+
 class CheckoutSolution:
 
     ITEM_TOTAL_CALCULATIONS = {
-        "A": lambda x: min(
-            # 3A for 130
-            (x // 3) * 130 + (x % 3) * 50,
-            x * 50,
-            # 5A for 200
-            (x // 5) * 200 + (x % 5) * 50,
-            x * 50,
+        "A": Item(
+            sku="A",
+            price=50,
+            offers=lambda x: min(
+                (x // 3) * 130 + (x % 3) * 50,
+                (x // 5) * 200 + (x % 5) * 50,
+                x * 50,
+            ),
+            cross_offers=None,
         ),
-        "B": lambda x: (x // 2) * 45 + (x % 2) * 30,
-        "C": lambda x: x * 20,
-        "D": lambda x: x * 15,
-        "E": lambda x: x * 40,
+        "B": Item(
+            sku="B",
+            price=30,
+            offers=lambda x: (x // 2) * 45 + (x % 2) * 30,
+            cross_offers=None,
+        ),
+        "C": Item(sku="C", price=20, offers=None, cross_offers=None),
+        "D": Item(sku="D", price=15, offers=None, cross_offers=None),
+        "E": Item(
+            sku="E",
+            price=40,
+            offers=None,
+            cross_offers=lambda x, items: items["B"] - (x // 2),
+        ),
     }
 
     # skus = unicode string
@@ -41,7 +53,3 @@ class CheckoutSolution:
             total += self.ITEM_TOTAL_CALCULATIONS[item](count)
 
         return total
-
-
-
-
