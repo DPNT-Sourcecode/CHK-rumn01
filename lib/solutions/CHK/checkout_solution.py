@@ -1,11 +1,12 @@
 class CheckoutSolution:
 
-    ITEM_PRICES = {"A": 50, "B": 30, "C": 20, "D": 15}
+    ITEM_PRICES = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
     ITEM_TOTAL_CALCULATIONS = {
-        "A": lambda x: (x // 3) * 130 + (x % 3) * 50,
+        "A": lambda x: (x // 3) * 130 + (x % 3) * ITEM_PRICES['A'],
         "B": lambda x: (x // 2) * 45 + (x % 2) * 30,
         "C": lambda x: x * 20,
-        "D": lambda x: x * 15
+        "D": lambda x: x * 15,
+        "E": lambda x: x * 40
     }
 
     # skus = unicode string
@@ -27,3 +28,4 @@ class CheckoutSolution:
             total += self.ITEM_TOTAL_CALCULATIONS[item](count)
             
         return total 
+
