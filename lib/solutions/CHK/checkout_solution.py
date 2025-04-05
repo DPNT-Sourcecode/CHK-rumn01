@@ -12,8 +12,9 @@ class Item:
         return self.cross_offers(count, items)
 
     def total_value(self, count, items):
-        return self.offered_value(count) + self.cross_offer_value(count, items)
-    
+        if cross_offer_value := self.cross_offer_value(count, items):
+            return min(cross_offer_value, self.offered_value(count))
+        return self.offered_value(count)
 
 
 class CheckoutSolution:
@@ -60,8 +61,11 @@ class CheckoutSolution:
 
         total = 0
         for item, count in items.items():
-            total += self.ITEM_TOTAL_CALCULATIONS[item].total_price(count)
+            total += self.ITEM_TOTAL_CALCULATIONS[item].total_value(
+                count, items
+            )
 
         return total
+
 
 
