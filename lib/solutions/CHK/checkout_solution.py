@@ -8,14 +8,12 @@ class Item:
     def offered_value(self, count):
         return self.offers(count)
 
-    def cross_offers(self, count, items):
+    def cross_offer_value(self, count, items):
         return self.cross_offers(count, items)
+
+    def total_value(self, count, items):
+        return self.offered_value(count) + self.cross_offer_value(count, items)
     
-    def total_value(self):
-        if self.cross_offers:
-            return self.cross_offers(count, items)
-        else:
-            return self.offered_value(count)
 
 
 class CheckoutSolution:
@@ -35,7 +33,7 @@ class CheckoutSolution:
             sku="B",
             price=30,
             offers=lambda x: (x // 2) * 45 + (x % 2) * 30,
-            cross_offers=None,
+            cross_offers=lambda x, items: x - (items["E"] // 2),
         ),
         "C": Item(sku="C", price=20, offers=None, cross_offers=None),
         "D": Item(sku="D", price=15, offers=None, cross_offers=None),
@@ -43,7 +41,7 @@ class CheckoutSolution:
             sku="E",
             price=40,
             offers=None,
-            cross_offers=lambda x, items: items["B"] - (x // 2),
+            cross_offers=None,
         ),
     }
 
@@ -65,4 +63,5 @@ class CheckoutSolution:
             total += self.ITEM_TOTAL_CALCULATIONS[item].total_price(count)
 
         return total
+
 
