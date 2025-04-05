@@ -20,3 +20,6 @@ class TestSum(TestCase):
 
     def test_valid_input(self):
         assert CheckoutSolution().checkout("ABCD") == 115
+
+    def test_full_basket(self):
+        assert CheckoutSolution().checkout("AAABBCCDD") == 245
