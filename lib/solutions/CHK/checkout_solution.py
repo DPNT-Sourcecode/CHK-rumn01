@@ -1,15 +1,16 @@
 class Item:
-    def __init__(self, sku, offers, cross_offers):
+    def __init__(self, sku, price, offers, cross_offers):
         self.sku = sku
+        self.price = price
         self.offers = offers
         self.cross_offers = cross_offers
-
 
 
 class Offer:
     def __init__(self, multiplier, value):
         self.multiplier = multiplier
         self.value = value
+
 
 class CrossOffers:
     def __init__(self, item, multiplier, reduction):
@@ -24,31 +25,36 @@ class CheckoutSolution:
     ITEM_TOTAL_CALCULATIONS = {
         "A": Item(
             sku="A",
-            price_calculations=(
-                lambda x: (x // 3) * 130 + (x % 3) * 50,
-                lambda x: (x // 5) * 200 + (x % 5) * 50,
+            price=50,
+            offers=(
+                Offer(3, 130),
+                Offer(5, 200),
             ),
-            cross_offers=None,
+            cross_offers=(),
         ),
         "B": Item(
             sku="B",
-            price_calculations=(lambda x: (x // 2) * 45 + (x % 2) * 30,),
-            cross_offers=lambda x, items: x - (items["E"] // 2),
+            price=30,
+            offers=(Offer(2, 45)),
+            cross_offers=CrossOffers("B", 2, "E"),
         ),
         "C": Item(
             sku="C",
-            price_calculations=(lambda x: x * 20),
-            cross_offers=None,
+            price=20,
+            offers=(Offer(1, 20)),
+            cross_offers=(),
         ),
         "D": Item(
             sku="D",
-            price_calculations=(lambda x: x * 15),
-            cross_offers=None,
+            price=15,
+            offers=(Offer(1, 15)),
+            cross_offers=(),
         ),
         "E": Item(
             sku="E",
-            price_calculations=(lambda x: x * 40),
-            cross_offers=None,
+            price=40,
+            offers=(Offer(1, 40)),
+            cross_offers=(),
         ),
     }
 
@@ -72,3 +78,4 @@ class CheckoutSolution:
             )
 
         return total
+
