@@ -27,6 +27,3 @@ class CheckoutSolution:
             total += self.ITEM_TOTAL_CALCULATIONS[item](count)
             
         return total 
-
-
-

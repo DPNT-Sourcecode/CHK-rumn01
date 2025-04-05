@@ -23,4 +23,3 @@ class TestSum(TestCase):
 
     def test_full_basket(self):
         assert CheckoutSolution().checkout("AAABBCCDD") == 245
-
