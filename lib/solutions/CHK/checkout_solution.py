@@ -1,24 +1,22 @@
 class Item:
-    def __init__(self, sku, price_calculations, cross_offers):
+    def __init__(self, sku, offers, cross_offers):
         self.sku = sku
-        self.price_calculations = price_calculations
+        self.offers = offers
         self.cross_offers = cross_offers
 
-    def offered_value(self, count):
-        return min(
-            price_calculation(count)
-            for price_calculation in self.price_calculations
-        )
 
-    def cross_offer_value(self, count, items):
-        return self.cross_offers(count, items)
 
-    def total_value(self, count, items):
-        # if self.cross_offers:
-        #     return min(
-        #         self.cross_offer_value(count, items), self.offered_value(count)
-        #     )
-        return self.offered_value(count)
+class Offer:
+    def __init__(self, multiplier, value):
+        self.multiplier = multiplier
+        self.value = value
+
+class CrossOffers:
+    def __init__(self, item, multiplier, reduction):
+        self.item = item
+        self.multiplier = multiplier
+        self.reduction = reduction
+
 
 
 class CheckoutSolution:
@@ -74,10 +72,3 @@ class CheckoutSolution:
             )
 
         return total
-
-
-
-
-
-
-
