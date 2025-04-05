@@ -1,11 +1,14 @@
 class Item:
-    def __init__(self, sku, price_calculation, cross_offers):
+    def __init__(self, sku, price_calculations, cross_offers):
         self.sku = sku
-        self.price_calculation = price_calculation
+        self.price_calculations = price_calculations
         self.cross_offers = cross_offers
 
     def offered_value(self, count):
-        return self.price_calculation(count)
+        return min(
+            price_calculation(count)
+            for price_calculation in self.price_calculations
+        )
 
     def cross_offer_value(self, count, items):
         return self.cross_offers(count, items)
@@ -23,26 +26,30 @@ class CheckoutSolution:
     ITEM_TOTAL_CALCULATIONS = {
         "A": Item(
             sku="A",
-            price_calculation=lambda x: min(
-                (x // 3) * 130 + (x % 3) * 50,
-                (x // 5) * 200 + (x % 5) * 50,
+            price_calculations=(
+                lambda x: (x // 3) * 130 + (x % 3) * 50,
+                lambda x: (x // 5) * 200 + (x % 5) * 50,
             ),
             cross_offers=None,
         ),
         "B": Item(
             sku="B",
-            price_calculation=lambda x: (x // 2) * 45 + (x % 2) * 30,
+            price_calculations=(lambda x: (x // 2) * 45 + (x % 2) * 30,),
             cross_offers=lambda x, items: x - (items["E"] // 2),
         ),
         "C": Item(
-            sku="C", price_calculation=lambda x: x * 20, cross_offers=None
+            sku="C",
+            price_calculations=(lambda x: x * 20),
+            cross_offers=None,
         ),
         "D": Item(
-            sku="D", price_calculation=lambda x: x * 15, cross_offers=None
+            sku="D",
+            price_calculations=(lambda x: x * 15),
+            cross_offers=None,
         ),
         "E": Item(
             sku="E",
-            price_calculation=lambda x: x * 40,
+            price_calculations=(lambda x: x * 40),
             cross_offers=None,
         ),
     }
@@ -67,6 +74,7 @@ class CheckoutSolution:
             )
 
         return total
+
 
 
 
