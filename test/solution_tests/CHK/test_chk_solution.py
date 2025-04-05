@@ -19,7 +19,7 @@ class TestSum(TestCase):
         assert CheckoutSolution().checkout(None) == -1
 
     def test_one_of_each(self):
-        assert CheckoutSolution().checkout("ABCDE") == 115
+        assert CheckoutSolution().checkout("ABCDE") == 155
 
     def test_all_offers_triggered(self):
         assert CheckoutSolution().checkout("AAABBCDEE") == 250
@@ -41,3 +41,4 @@ class TestSum(TestCase):
         # 4E + 2B = (4 * 40) + (2 * 30) - (2 * 30) = 160 + 0 = 160
         # The 4E triggers 2 free B's, which cancels out the cost of the 2 B's
         assert CheckoutSolution().checkout("EEEEBB") == 160
+

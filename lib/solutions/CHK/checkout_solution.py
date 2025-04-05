@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self, sku,  price_calculation, cross_offers):
+    def __init__(self, sku, price_calculation, cross_offers):
         self.sku = sku
         self.price_calculation = price_calculation
         self.cross_offers = cross_offers
@@ -23,26 +23,26 @@ class CheckoutSolution:
     ITEM_TOTAL_CALCULATIONS = {
         "A": Item(
             sku="A",
-            price=50,
             price_calculation=lambda x: min(
                 (x // 3) * 130 + (x % 3) * 50,
                 (x // 5) * 200 + (x % 5) * 50,
-                x * 50,
             ),
             cross_offers=None,
         ),
         "B": Item(
             sku="B",
-            price=30,
             price_calculation=lambda x: (x // 2) * 45 + (x % 2) * 30,
             cross_offers=lambda x, items: x - (items["E"] // 2),
         ),
-        "C": Item(sku="C", price=20, price_calculation=None, cross_offers=None),
-        "D": Item(sku="D", price=15, price_calculation=None, cross_offers=None),
+        "C": Item(
+            sku="C", price_calculation=lambda x: x * 20, cross_offers=None
+        ),
+        "D": Item(
+            sku="D", price_calculation=lambda x: x * 15, cross_offers=None
+        ),
         "E": Item(
             sku="E",
-            price=40,
-            price_calculation=None,
+            price_calculation=lambda x: x * 40,
             cross_offers=None,
         ),
     }
@@ -67,6 +67,7 @@ class CheckoutSolution:
             )
 
         return total
+
 
 
 
