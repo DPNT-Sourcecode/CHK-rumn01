@@ -18,9 +18,10 @@ class TestSum(TestCase):
     def test_none_input(self):
         assert CheckoutSolution().checkout(None) == -1
 
-    def test_valid_input(self):
-        assert CheckoutSolution().checkout("ABCD") == 115
+    def test_one_of_each(self):
+        assert CheckoutSolution().checkout("ABCDE") == 115
 
-    def test_full_basket(self):
+    def test_all_offers_triggered(self):
         assert CheckoutSolution().checkout("AAABBCCDD") == 245
     
+
