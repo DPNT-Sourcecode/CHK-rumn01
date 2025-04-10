@@ -103,10 +103,3 @@ class Basket:
             )
             for sku, item_count in self.item_counts.items()
         ]
-
-
-
-
-
-
-
