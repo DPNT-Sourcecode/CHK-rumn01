@@ -75,7 +75,7 @@ class Inventory:
 
 
 class Basket:
-    items: dict[str,Item] = {}
+    items: dict[str, Item] = {}
     item_counts: dict[str, int] = {}
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
@@ -83,10 +83,18 @@ class Basket:
             if char not in inventory.items:
                 raise ValueError(f"SKU {char} is not valid")
             if char in self.item_counts:
-                self.item_counts[char] +=1
+                self.item_counts[char] += 1
             else:
                 self.item_counts[char] = 1
                 self.items[char] = inventory.items[char]
+
+    @property
+    def undiscounted_total(self):
+        return sum(
+            item.price * self.item_counts[sku]
+            for sku, item in self.items.items()
+        )
+
 
 
 
