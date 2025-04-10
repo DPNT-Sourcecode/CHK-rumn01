@@ -66,13 +66,7 @@ class Inventory:
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
 
-    def reference_most_favourable_offer(sku: str, item_count: int):
-        sku_offers = [offer for offer in self.offers if offer.sku == sku]
-        offers_ordered_by_multiplier = sorted(
-            self.offers, key=lambda offer: offer.multiplier
-        )
-        for offer in offers_ordered_by_multiplier:
-            
+
 
 
 class Basket:
@@ -90,6 +84,7 @@ class Basket:
                 self.item_counts[char] = 1
                 self.items[char] = inventory.items[char]
 
+
     @property
     def undiscounted_total(self):
         return sum(
@@ -105,4 +100,5 @@ class Basket:
             )
             for sku, item_count in self.item_counts.items()
         ]
+
 
