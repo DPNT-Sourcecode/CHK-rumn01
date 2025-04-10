@@ -25,8 +25,8 @@ class Offer:
             is reached
     """
 
-    def __init__(self, item: Item, multiplier: int, offer_value: Decimal):
-        self.item: Item = item
+    def __init__(self, sku: str, multiplier: int, offer_value: Decimal):
+        self.sku: str = sku
         self.multiplier: int = multiplier
         self.offer_value: Decimal = offer_value
 
@@ -71,6 +71,7 @@ class Inventory:
         self.items: list[Item] = items
         self.offers: list[Offer] = offers
         self.cross_offers: list[CrossOffer] = cross_offers
+
 
 
 

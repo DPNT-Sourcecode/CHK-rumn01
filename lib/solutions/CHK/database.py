@@ -1,6 +1,7 @@
 """This module is analagous to populating the Inventory from the database"""
 
-from lib.solutions.CHK.models import Inventory
+from pytest import Item
+from lib.solutions.CHK.models import Inventory, Offer
 
 mock_database = {
     "items": [
@@ -26,9 +27,22 @@ mock_database = {
     ],
 }
 
-def mock_get_items_query(skus:list[str])
 
+def mock_get_items_query(skus: list[str]):
+    return [
+        Item(**item)
+        for item in mock_database["items"]
+        if item["sku"] in skus
+    ]
+
+def mock_get_offers_query(skus: list[str]):
+    return [
+        Offer(**offer)
+        for offer in mock_database["offers"]
+        if offer["sku"] in skus
+    ]
 Inventory()
+
 
 
 
