@@ -83,5 +83,11 @@ class Basket:
                 item.count += 1
             else:
                 self.items[sku] = inventory.items[sku]
-            
+        for item in self.items:
+            if item_cross_offers := list(
+                filter(
+                    lambda cross_offer: cross_offer.primary_item_sku,
+                    self.inventory.cross_offers,
+                )
+            )
 
