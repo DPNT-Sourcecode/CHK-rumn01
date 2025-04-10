@@ -45,7 +45,7 @@ def mock_get_offers_query(skus: list[str]):
 def mock_get_cross_offers_query(skus: list[str]):
     return [
         CrossOffer(**cross_offer)
-        for cross_offer in mock_database["offers"]
+        for cross_offer in mock_database["cross_offers"]
         if cross_offer["primary_item_sku"] in skus
         and cross_offer["offer_item_sku"] in skus
     ]
@@ -56,4 +56,5 @@ class Inventory:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
+
 
