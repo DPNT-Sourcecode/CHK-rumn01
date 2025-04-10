@@ -75,7 +75,7 @@ class Multibuy:
     This could take the form: `buy any 3 of (S,T,X,Y,Z) for 45`
 
     Args:
-        skus (list[str]): List of SKUs of items upon which the number of 
+        skus (list[str]): List of SKUs of items upon which the number of
             purchases influence the offer value
         multiplier (int): Number of items to trigger an offer
         offer_value (int): Value of the offer when multiplier of items is
@@ -127,7 +127,11 @@ class Basket:
         """
         total = 0
         for multibuy in self.inventory.multibuys:
-            
+            multibuy_item_count = sum(
+                self.item_counts[sku] for sku in multibuy.skus
+            )
+            multibuys_applied = multibuy_item_count //multibuy.multiplier
+            total += multibuys_applied * multibuy.offer_value
         for item in self.items.values():
             sku = item.sku
             item_count = self.item_counts[sku]
@@ -173,6 +177,7 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
 
 
