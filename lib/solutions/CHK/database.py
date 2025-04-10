@@ -21,7 +21,7 @@ mock_database = {
             "primary_item_multiplier": 2,
             "offer_item_sku": "B",
             "offer_item_multiplier": 1,
-            "offer_value": 0,
+            "offer_item_price": 0,
         }
     ],
 }
@@ -48,3 +48,4 @@ def mock_get_cross_offers_query(skus: list[str]):
         if cross_offer["primary_item_sku"] in skus
         and cross_offer["offer_item_sku"] in skus
     ]
+

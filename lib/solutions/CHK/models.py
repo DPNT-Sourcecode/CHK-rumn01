@@ -39,7 +39,7 @@ class CrossOffer:
         primary_item_multiplier: int,
         offer_item_sku: str,
         offer_item_multiplier: int,
-        offer_value: int,
+        offer_item_price: int,
     ):
         """Class to describe an offer applied to when purchases of a primary
         item influence the value calculated on a offer item
@@ -52,14 +52,14 @@ class CrossOffer:
             offer_item (Item): Item for which the value is adjusted based upon
                 the number of primary items purchased
             multiplier (int): Number of primary items to trigger an offer
-            offer_value (int): Value of the offer on the offer item when
+            offer_item_price (int): Value of the offer on the offer item when
                 the multiplier of primary items is reached
         """
         self.primary_item_sku: str = primary_item_sku
         self.primary_item_multiplier: int = primary_item_multiplier
         self.offer_item_sku: str = offer_item_sku
         self.offer_item_multiplier: int = offer_item_multiplier
-        self.offer_value: int = offer_value
+        self.offer_item_price: int = offer_item_price
 
 
 class Inventory:
@@ -99,11 +99,19 @@ class Basket:
                 if offer.sku == sku
             ]
             cross_offer_totals = [
-                self.item_counts[cross_offer.primary_item_sku]
-                // cross_offer.primary_item_multiplier
+                (
+                    (
+                        self.item_counts[cross_offer.primary_item_sku]
+                        // cross_offer.primary_item_multiplier
+                    )
+                    * cross_offer.offer_item_price
+                )
+                + ((self.item_counts[sku])) * item.price
                 for cross_offer in self.inventory.cross_offers
                 if cross_offer.offer_item_sku == sku
             ]
+            total += min([base_total] + offer_totals + cross_offer_totals)
+
 
 
 
