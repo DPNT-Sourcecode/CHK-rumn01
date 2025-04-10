@@ -6,9 +6,7 @@ from lib.solutions.CHK.database import (
 
 
 class Item:
-    basket_count = 0
-    offer = None
-    cross_offer = None
+    count = 0
 
     def __init__(self, sku: str, price: int):
         self.sku: str = sku
@@ -73,30 +71,26 @@ class Inventory:
 
 class Basket:
     items: dict[str, Item] = {}
+    item_counts: dict[str, int] = {}
+    basket_cross_offers: dict[str, Offer]
+    basket_offers: dict[str, Offer]
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
         self.inventory = inventory
+        self.item_counts
+        
+
+    def get_basket_items(self, skus:str, inventory:Inventory):
         for sku in skus:
             if sku not in inventory.items:
                 raise ValueError(f"SKU {sku} is not valid")
-            if item := self.items.get(sku):
-                item.basket_count += 1
+            if sku in self.item_counts:
+                self.item_counts[sku] += 1
             else:
+                self.item_counts[sku] = 1
                 self.items[sku] = inventory.items[sku]
-        for item in self.items:
-            if item_cross_offers := {
-                cross_offer.primary_item_multiplier: cross_offer
-                for cross_offer in self.inventory.cross_offers
-            }:
-                item.cross_offer = item_cross_offers.get(
-                    max(
-                        primary_item_multiplier
-                        for primary_item_multiplier in item_cross_offers.keys()
-                        if primary_item_multiplier < item.basket_count
-                    )
-                )
-            else:
-                item.cross_offer = None
+
+
 
 
 
