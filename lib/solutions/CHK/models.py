@@ -8,7 +8,7 @@ class Offer:
 
     Args:
         multiplier (int): Number of items to trigger an offer
-        offer_value (Decimal): Value of the offer when multiplier of items 
+        offer_value (Decimal): Value of the offer when multiplier of items
             is reached
     """
 
@@ -18,22 +18,19 @@ class Offer:
 
 
 class CrossOffer:
-    def __init__(self, item: str, multiplier:int, reduction):
+    def __init__(self, item: str, multiplier: int, reduction):
         self.item: str = item
         self.multiplier = multiplier
         self.reduction = reduction
 
 
 class Item:
-
-    def __init__(
-        self,
-        sku: str,
-        price: Decimal,
-        offers: list[Offer],
-        cross_offers: list[CrossOffer],
-    ):
+    def __init__(self, sku: str, price: Decimal):
         self.sku: str = sku
         self.price: Decimal = price
-        self.offers: list[Offer] = offers
-        self.cross_offers: list[CrossOffer] = cross_offers
+
+
+class Basket:
+    def __init__(self, items: list[Item]) -> None:
+        pass
+
