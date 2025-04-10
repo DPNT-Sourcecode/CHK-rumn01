@@ -18,7 +18,7 @@ class Offer:
     This could take the form 3{item} for {total_price}
 
     Args:
-        item (Item): Item upon which the number of purchases influence the 
+        item (Item): Item upon which the number of purchases influence the
             offer value
         multiplier (int): Number of items to trigger an offer
         offer_value (Decimal): Value of the offer when multiplier of items
@@ -33,7 +33,12 @@ class Offer:
 
 class CrossOffer:
     def __init__(
-        self, primary_item: Item, offer_item: Item, multiplier: int, reduction
+        self,
+        primary_item_sku: str,
+        primary_item_multiplier: int,
+        offer_item_sku: str,
+        offer_item_multiplier: int,
+        offer_value: Decimal,
     ):
         """Class to describe an offer applied to when purchases of a primary
         item influence the value calculated on a offer item
@@ -49,10 +54,11 @@ class CrossOffer:
             offer_value (Decimal): Value of the offer on the offer item when
                 the multiplier of primary items is reached
         """
-        self.primary_item: Item = primary_item
-        self.offer_item: Item = offer_item
-        self.multiplier = multiplier
-        self.reduction = reduction
+        self.primary_item_sku: str = primary_item_sku
+        self.primary_item_multiplier: int = primary_item_multiplier
+        self.offer_item_sku: str = offer_item_sku
+        self.offer_item_multiplier: int = offer_item_multiplier
+        self.offer_value: Decimal = offer_value
 
 
 class Inventory:
@@ -65,6 +71,7 @@ class Inventory:
         self.items: list[Item] = items
         self.offers: list[Offer] = offers
         self.cross_offers: list[CrossOffer] = cross_offers
+
 
 
 
