@@ -68,7 +68,8 @@ class CrossOffer:
         self.offer_item_price: int = offer_item_price
 
 
-class Basket:
+class Basket: 
+    """Class to describe the """
 
     def __init__(self, skus: str, inventory: 'Inventory') -> None:
         self.inventory = inventory
@@ -118,7 +119,3 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
-
-
-
-
