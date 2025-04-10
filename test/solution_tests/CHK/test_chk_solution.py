@@ -50,7 +50,7 @@ class TestSum(TestCase):
         assert CheckoutSolution().checkout("HHHHHHHHHHHHHHHH") == 135
 
     def test_offer_k_triggered(self):
-        assert CheckoutSolution().checkout("KKK") == 230
+        assert CheckoutSolution().checkout("KKK") == 190
 
     def test_offer_n_triggered(self):
         assert CheckoutSolution().checkout("MMNNNN") == 175
@@ -95,4 +95,9 @@ class TestSum(TestCase):
         # 4E + 2B = (4 * 40) + (2 * 30) - (2 * 30) = 160 + 0 = 160
         # The 4E triggers 2 free B's, which cancels out the cost of the 2 B's
         assert CheckoutSolution().checkout("EEEEBB") == 160
+
+    def test_multibuy(self):
+        assert CheckoutSolution().checkout("SSTTXXYYZZ") == 135+17
+
+
 
