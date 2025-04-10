@@ -22,8 +22,14 @@ class TestSum(TestCase):
         assert CheckoutSolution().checkout("ABCDE") == 155
 
     def test_offer_3a_triggered(self):
-        assert CheckoutSolution().checkout("AAABCDE") == 135
-    
+        assert CheckoutSolution().checkout("AAABCDE") == 235
+    def test_offer_5a_triggered(self):
+        assert CheckoutSolution().checkout("AAAAAABCDE") == 355
+    def test_offer_2b_triggered(self):
+        assert CheckoutSolution().checkout("ABBCDE") == 170
+
+    def test_offer_2e_triggered(self):
+        assert CheckoutSolution().checkout("ABBEE") == 120
     def test_multiple_offers_returns_lowest_total(self):
         # 5A could be calculated as (3A + 2A) = 130 + 100 = 230
         # Or as 5A = 200
@@ -41,4 +47,5 @@ class TestSum(TestCase):
         # 4E + 2B = (4 * 40) + (2 * 30) - (2 * 30) = 160 + 0 = 160
         # The 4E triggers 2 free B's, which cancels out the cost of the 2 B's
         assert CheckoutSolution().checkout("EEEEBB") == 160
+
 
