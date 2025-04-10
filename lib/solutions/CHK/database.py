@@ -47,9 +47,3 @@ def mock_get_cross_offers_query(skus: list[str]):
         for cross_offer in mock_database["offers"]
         if cross_offer["sku"] in skus
     ]
-
-
-
-
-
-

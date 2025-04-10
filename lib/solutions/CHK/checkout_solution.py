@@ -1,50 +1,21 @@
 
 
+from lib.solutions.CHK.database import mock_get_items_query, mock_get_offers_query
+
+
 class CheckoutSolution:
 
-    ITEM_TOTAL_CALCULATIONS = {
-        "A": Item(
-            sku="A",
-            price=50,
-            offers=(
-                Offer(3, 130),
-                Offer(5, 200),
-            ),
-            cross_offers=(),
-        ),
-        "B": Item(
-            sku="B",
-            price=30,
-            offers=(Offer(2, 45)),
-            cross_offers=CrossOffers("B", 2, "E"),
-        ),
-        "C": Item(
-            sku="C",
-            price=20,
-            offers=(Offer(1, 20)),
-            cross_offers=(),
-        ),
-        "D": Item(
-            sku="D",
-            price=15,
-            offers=(Offer(1, 15)),
-            cross_offers=(),
-        ),
-        "E": Item(
-            sku="E",
-            price=40,
-            offers=(Offer(1, 40)),
-            cross_offers=(),
-        ),
-    }
 
     # skus = unicode string
     def checkout(self, skus):
 
         if not isinstance(skus, str):
             return -1
+        
+        items = {item.sku:item for item in mock_get_items_query(skus)}
+        offers = {offer.sku:offer for offer in mock_get_offers_query(skus)}
 
-        items = {"A": 0, "B": 0, "C": 0, "D": 0, "E": 0}
+
 
         for char in skus:
             if char not in items:
@@ -58,4 +29,3 @@ class CheckoutSolution:
             )
 
         return total
-

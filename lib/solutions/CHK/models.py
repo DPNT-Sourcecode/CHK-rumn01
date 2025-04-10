@@ -56,11 +56,3 @@ class CrossOffer:
         self.offer_value: Decimal = offer_value
 
 
-
-
-
-
-
-
-
-
