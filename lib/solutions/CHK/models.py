@@ -110,17 +110,23 @@ class Basket:
         for sku, item in self.items.items():
             item_count = self.item_counts[sku]
             item_total = 0
-            for cross_offer in sorted(
+            item_cross_offers = sorted(
                 filter(
                     lambda cross_offer: cross_offer.offer_item_sku == sku,
                     self.inventory.cross_offers,
                 ),
                 key=lambda cross_offer: cross_offer.offer_item_multiplier,
                 reverse=True,
-            ):
+            )
+            cross_offer_item_counts = self.item_counts
+            for cross_offer in item_cross_offers:
                 cross_offer_application_count = (
-                    self.item_counts[cross_offer.primary_item_sku]
+                    cross_offer_item_counts[cross_offer.primary_item_sku]
                     // cross_offer.primary_item_multiplier
+                )
+                cross_offer_item_counts[cross_offer.primary_item_sku] -= (
+                    cross_offer.primary_item_multiplier
+                    * cross_offer_application_count
                 )
                 item_total += (
                     cross_offer_application_count
@@ -145,6 +151,7 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
 
 
