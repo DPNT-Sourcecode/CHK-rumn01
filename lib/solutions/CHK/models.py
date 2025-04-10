@@ -5,6 +5,12 @@ if TYPE_CHECKING:
 
 
 class Item:
+    """Class to describe an Item that exists in the inventory
+    
+    Args:
+        sku (str): SKU of the item
+        price (int): Unit price of one item (without any discounts)
+    """
     def __init__(self, sku: str, price: int):
         self.sku: str = sku
         self.price: int = price
@@ -16,11 +22,11 @@ class Offer:
     This could take the form 3{item} for {total_price}
 
     Args:
-        item (Item): Item upon which the number of purchases influence the
-            offer value
+        sku (str): SKU of an item upon which the number of purchases influence
+            the offer value
         multiplier (int): Number of items to trigger an offer
-        offer_value (int): Value of the offer when multiplier of items
-            is reached
+        offer_value (int): Value of the offer when multiplier of items is 
+            reached
     """
 
     def __init__(self, sku: str, multiplier: int, offer_value: int):
@@ -44,11 +50,14 @@ class CrossOffer:
         This could take the form 2{primary_item} = 1 {offer_item} {value}
 
         Args:
-            primary_item (Item): Item upon which the number of purchases
-                influence the offer item
-            offer_item (Item): Item for which the value is adjusted based upon
-                the number of primary items purchased
-            multiplier (int): Number of primary items to trigger an offer
+            primary_item_sku (str): SKU of the item upon which the number of 
+                purchases influence the offer item
+            primary_item_multiplier (int): Multiples of the primary item that
+                trigger the discount
+            offer_item_sku (str): SKU of the item for which the value is 
+                adjusted based upon the number of primary items purchased
+            offer_item_multiplier (int): Number of primary items to trigger an
+                offer
             offer_item_price (int): Value of the offer on the offer item when
                 the multiplier of primary items is reached
         """
@@ -109,6 +118,7 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
 
 
 
