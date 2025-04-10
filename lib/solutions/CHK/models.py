@@ -89,8 +89,9 @@ class Basket:
         for sku, item in self.items.items():
             item_count = self.item_counts[sku]
             base_total = item.price * item_count
-            cross_offers = [
-                cross_offer
+            cross_offer_totals = [
+                self.item_counts[cross_offer.primary_item_sku] // cross_offer.primary_item_multiplier
                 for cross_offer in self.inventory.cross_offers
                 if cross_offer.offer_item_sku == sku
             ]
+
