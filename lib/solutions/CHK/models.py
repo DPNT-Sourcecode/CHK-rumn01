@@ -75,14 +75,16 @@ class Inventory:
 
 
 class Basket:
-    items: list[Item]
-    item_counts: dict[str, int]
+    items: dict[str,Item] = {}
+    item_counts: dict[str, int] = {}
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
         for char in skus:
-            if not (item := inventory.items.get(char)):
+            if char not in inventory.items:
                 raise ValueError(f"SKU {char} is not valid")
-            self.items[char] += 1
+            if char in self.item_counts:
+                self.item_counts[char] +=1
+
 
 
 
