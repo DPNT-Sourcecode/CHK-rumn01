@@ -118,7 +118,7 @@ class Basket:
                 key=lambda cross_offer: cross_offer.offer_item_multiplier,
                 reverse=True,
             )
-            cross_offer_item_counts = self.item_counts
+            cross_offer_item_counts = dict(self.item_counts)
             for cross_offer in item_cross_offers:
                 cross_offer_application_count = (
                     cross_offer_item_counts[cross_offer.primary_item_sku]
@@ -151,6 +151,7 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
 
 
