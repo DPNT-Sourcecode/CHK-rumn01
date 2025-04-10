@@ -151,9 +151,3 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
-
-
-
-
-
-

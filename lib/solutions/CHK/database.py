@@ -10,11 +10,13 @@ mock_database = {
         {"sku": "C", "price": 20},
         {"sku": "D", "price": 15},
         {"sku": "E", "price": 40},
+        {"sku": "F", "price": 10},
     ],
     "offers": [
         {"sku": "A", "multiplier": 3, "offer_value": 130},
         {"sku": "A", "multiplier": 5, "offer_value": 200},
         {"sku": "B", "multiplier": 2, "offer_value": 45},
+        {"sku": "F", "multiplier": 3, "offer_value": 20},
     ],
     "cross_offers": [
         {
