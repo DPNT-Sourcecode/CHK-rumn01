@@ -69,6 +69,13 @@ mock_database = {
             "offer_item_price": 0,
         },
     ],
+    "multibuys": [
+        {
+            "skus": ["S", "T", "X", "Y", "Z"],
+            "multiplier": 3,
+            "offer_value": 45,
+        }
+    ],
 }
 
 
@@ -94,7 +101,12 @@ def mock_get_cross_offers_query(skus: list[str]):
         and cross_offer["offer_item_sku"] in skus
     ]
 
-
+def mock_get_multibuys_query(skus: list[str]):
+    return [
+        Offer(**offer)
+        for offer in mock_database["offers"]
+        if offer["sku"] in skus
+    ]
 class Inventory:
     """Mock model that represents a pseudo ORM output from a database of items"""
 
@@ -102,5 +114,6 @@ class Inventory:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
+
 
 

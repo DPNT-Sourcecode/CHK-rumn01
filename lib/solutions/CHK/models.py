@@ -69,6 +69,25 @@ class CrossOffer:
         self.offer_item_price: int = offer_item_price
 
 
+class Multibuy:
+    """Class to describe an offer applied across multiple items
+
+    This could take the form: `buy any 3 of (S,T,X,Y,Z) for 45`
+
+    Args:
+        skus (list[str]): SKU of an item upon which the number of purchases influence
+            the offer value
+        multiplier (int): Number of items to trigger an offer
+        offer_value (int): Value of the offer when multiplier of items is
+            reached
+    """
+
+    def __init__(self, skus: list[str], multiplier: int, offer_value: int):
+        self.skus: list[str] = skus
+        self.multiplier: int = multiplier
+        self.offer_value: int = offer_value
+
+
 class Basket:
     """Class to describe the basket that is requested by the list of SKUs"""
 
@@ -151,3 +170,4 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
