@@ -131,7 +131,9 @@ class Basket:
                 offer_application_count = (
                     self.item_counts[sku] // offer.multiplier
                 )
-                item_total += offer.offer_value
-                item_count -= offer_application_count
+                item_total += offer.offer_value * offer_application_count
+                item_count -= offer.multiplier*offer_application_count
             item_total += item_count * item.price
-        return item_total
+            total += item_total
+        return total
+
