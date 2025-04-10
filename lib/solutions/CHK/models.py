@@ -68,8 +68,9 @@ class Inventory:
 
     def reference_most_favourable_offer(sku: str, item_count: int):
         sku_offers = [offer for offer in self.offers if offer.sku == sku]
-        offers_ordered_by_multiplier =sorted(self.offers, key=lambda offer: offer.multiplier)
-        
+        offers_ordered_by_multiplier = sorted(
+            self.offers, key=lambda offer: offer.multiplier
+        )
 
 
 class Basket:
@@ -96,7 +97,13 @@ class Basket:
 
     @property
     def applied_offers(self):
-        
+        return [
+            self.inventory.reference_most_favourable_offer(
+                sku=sku, item_count=item_count
+            )
+            for sku, item_count in self.item_counts.items()
+        ]
+
 
 
 
