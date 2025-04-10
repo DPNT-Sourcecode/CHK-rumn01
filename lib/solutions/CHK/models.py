@@ -128,12 +128,11 @@ class Basket:
                 key=lambda offer: offer.multiplier,
                 reverse=True,
             ):
-                offer_application_count = (
-                    self.item_counts[sku] // offer.multiplier
-                )
+                offer_application_count = item_count // offer.multiplier
                 item_total += offer.offer_value * offer_application_count
-                item_count -= offer.multiplier*offer_application_count
+                item_count -= offer.multiplier * offer_application_count
             item_total += item_count * item.price
             total += item_total
         return total
+
 
