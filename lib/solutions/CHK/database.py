@@ -102,9 +102,3 @@ class Inventory:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
-
-
-
-
-
-
