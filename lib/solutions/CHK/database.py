@@ -1,6 +1,6 @@
 """This module is analagous to populating the Inventory from the database"""
 
-from lib.solutions.CHK.models import CrossOffer, Offer, Item
+from solutions.CHK.models import CrossOffer, Offer, Item
 
 
 mock_database = {
@@ -57,3 +57,4 @@ class Inventory:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
+

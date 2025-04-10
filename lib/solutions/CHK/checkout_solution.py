@@ -1,5 +1,5 @@
-from lib.solutions.CHK.models import Basket
-from lib.solutions.CHK.database import Inventory
+from solutions.CHK.models import Basket
+from solutions.CHK.database import Inventory
 
 class CheckoutSolution:
 
@@ -17,3 +17,4 @@ class CheckoutSolution:
             return -1
 
         return basket.calculate_total()
+

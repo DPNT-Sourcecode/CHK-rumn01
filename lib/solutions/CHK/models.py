@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from lib.solutions.CHK.database import Inventory
+    from solutions.CHK.database import Inventory
 
 
 class Item:
@@ -129,5 +129,6 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
 
 
