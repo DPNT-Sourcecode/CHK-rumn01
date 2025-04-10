@@ -126,6 +126,8 @@ class Basket:
             int: Total value of the basket
         """
         total = 0
+        for multibuy in self.inventory.multibuys:
+            
         for item in self.items.values():
             sku = item.sku
             item_count = self.item_counts[sku]
@@ -171,6 +173,7 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
 
 
