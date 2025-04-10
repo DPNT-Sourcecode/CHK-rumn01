@@ -83,18 +83,9 @@ class Basket:
                 item.count += 1
             else:
                 self.items[sku] = inventory.items[sku]
+            
 
-    @property
-    def total(self):
-        total = 0
-        for sku, item in self.items.items():
-            item_count = self.item_counts[sku]
-            if cross_offers := [
-                cross_offer
-                for cross_offer in self.inventory.cross_offers
-                if cross_offer.sku == sku
-            ]:
-                pass
+
 
 
 
