@@ -119,7 +119,8 @@ class Basket:
                 reverse=True,
             ):
                 cross_offer_application_count = (
-                    item_count // cross_offer.primary_item_multiplier
+                    self.item_counts[cross_offer.primary_item_sku]
+                    // cross_offer.primary_item_multiplier
                 )
                 item_total += (
                     cross_offer_application_count
@@ -144,6 +145,7 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
 
 
