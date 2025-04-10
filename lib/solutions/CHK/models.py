@@ -98,7 +98,10 @@ class Basket:
         total = 0
         for sku, item in self.items.items():
             item_count = self.item_counts[sku]
+            item_total = 0
+            for cross_offer in self.inven
             base_total = item.price * item_count
+
             offer_totals = [
                 (
                     (self.item_counts[sku] // offer.multiplier)
@@ -129,6 +132,7 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
 
 
 
