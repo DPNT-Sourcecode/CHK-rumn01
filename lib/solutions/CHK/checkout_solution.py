@@ -1,21 +1,24 @@
-
-
-from lib.solutions.CHK.database import mock_get_items_query, mock_get_offers_query
+from lib.solutions.CHK.database import (
+    mock_get_cross_offers_query,
+    mock_get_items_query,
+    mock_get_offers_query,
+)
 
 
 class CheckoutSolution:
-
 
     # skus = unicode string
     def checkout(self, skus):
 
         if not isinstance(skus, str):
             return -1
-        
-        items = {item.sku:item for item in mock_get_items_query(skus)}
-        offers = {offer.sku:offer for offer in mock_get_offers_query(skus)}
 
-
+        items = {item.sku: item for item in mock_get_items_query(skus)}
+        offers = {offer.sku: offer for offer in mock_get_offers_query(skus)}
+        cross_offers = {
+            cross_offer.sku: cross_offer
+            for cross_offer in mock_get_cross_offers_query(skus)
+        }
 
         for char in skus:
             if char not in items:
@@ -29,3 +32,4 @@ class CheckoutSolution:
             )
 
         return total
+

@@ -29,10 +29,9 @@ mock_database = {
 
 def mock_get_items_query(skus: list[str]):
     return [
-        Item(**item)
-        for item in mock_database["items"]
-        if item["sku"] in skus
+        Item(**item) for item in mock_database["items"] if item["sku"] in skus
     ]
+
 
 def mock_get_offers_query(skus: list[str]):
     return [
@@ -41,9 +40,12 @@ def mock_get_offers_query(skus: list[str]):
         if offer["sku"] in skus
     ]
 
+
 def mock_get_cross_offers_query(skus: list[str]):
     return [
         CrossOffer(**cross_offer)
         for cross_offer in mock_database["offers"]
-        if cross_offer["sku"] in skus
+        if cross_offer["primary_item_sku"] in skus
+        and cross_offer["offer_item_sku"] in skus
     ]
+
