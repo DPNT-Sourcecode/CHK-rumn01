@@ -84,6 +84,13 @@ class Basket:
                 self.item_counts[sku] = 1
                 self.items[sku] = inventory.items[sku]
 
+    def calculate_total(self):
+        total = 0
+        for sku,item in self.items.items():
+            item_count = self.item_counts[sku]
+
+
+
 
 
 
