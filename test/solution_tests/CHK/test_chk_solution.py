@@ -46,6 +46,15 @@ class TestSum(TestCase):
     def test_offer_3f_triggered_2(self):
         assert CheckoutSolution().checkout("FFFFFF") == 40
 
+    def test_offer_h_triggered_(self):
+        assert CheckoutSolution().checkout("HHHHHHHHHHHHHHHH") == 135
+    
+    def test_offer_k_triggered_(self):
+        assert CheckoutSolution().checkout("KKK") == 230
+    
+    def test_offer_n_triggered_(self):
+        assert CheckoutSolution().checkout("MMNNNN") == 175
+
     def test_offer_complex_triggered(self):
         assert CheckoutSolution().checkout("AAAAAEEBAAABB") == 455
 
@@ -65,4 +74,5 @@ class TestSum(TestCase):
         # 4E + 2B = (4 * 40) + (2 * 30) - (2 * 30) = 160 + 0 = 160
         # The 4E triggers 2 free B's, which cancels out the cost of the 2 B's
         assert CheckoutSolution().checkout("EEEEBB") == 160
+
 
