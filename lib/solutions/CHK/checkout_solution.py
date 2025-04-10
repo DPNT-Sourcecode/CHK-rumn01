@@ -17,4 +17,3 @@ class CheckoutSolution:
             return -1
 
         return basket.calculate_total()
-

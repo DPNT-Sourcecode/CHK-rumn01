@@ -48,4 +48,3 @@ def mock_get_cross_offers_query(skus: list[str]):
         if cross_offer["primary_item_sku"] in skus
         and cross_offer["offer_item_sku"] in skus
     ]
-

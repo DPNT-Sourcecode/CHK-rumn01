@@ -119,9 +119,3 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
-
-
-
-
-
-
