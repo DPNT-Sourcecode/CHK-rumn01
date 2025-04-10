@@ -1,6 +1,6 @@
 
 
-from lib.solutions.CHK.models import Inventory
+from lib.solutions.CHK.models import Basket, Inventory
 
 
 class CheckoutSolution:
@@ -13,10 +13,11 @@ class CheckoutSolution:
 
         inventory = Inventory(skus=skus)
 
-        for char in skus:
-            if char not in items:
-                return -1
-            items[char] += 1
+        try:
+            basket = Basket(skus=skus, inventory=inventory)
+        except ValueError:
+            return -1
+
 
         total = 0
         for item, count in items.items():
@@ -25,5 +26,6 @@ class CheckoutSolution:
             )
 
         return total
+
 
 
