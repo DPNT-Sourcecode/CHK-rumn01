@@ -7,11 +7,6 @@ class Item:
         self.price: Decimal = price
 
 
-class Basket:
-    def __init__(self, items: list[Item]) -> None:
-        pass
-
-
 class Offer:
     """Class to describe an offer applied to a single item
 
@@ -61,16 +56,7 @@ class CrossOffer:
         self.offer_value: Decimal = offer_value
 
 
-class Inventory:
-    def __init__(
-        self,
-        items: list[Item],
-        offers: list[Offer],
-        cross_offers: list[CrossOffer],
-    ) -> None:
-        self.items: list[Item] = items
-        self.offers: list[Offer] = offers
-        self.cross_offers: list[CrossOffer] = cross_offers
+
 
 
 
