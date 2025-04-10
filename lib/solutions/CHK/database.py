@@ -11,12 +11,34 @@ mock_database = {
         {"sku": "D", "price": 15},
         {"sku": "E", "price": 40},
         {"sku": "F", "price": 10},
+        {"sku": "G", "price": 20},
+        {"sku": "H", "price": 10},
+        {"sku": "I", "price": 35},
+        {"sku": "J", "price": 60},
+        {"sku": "K", "price": 80},
+        {"sku": "L", "price": 90},
+        {"sku": "M", "price": 15},
+        {"sku": "N", "price": 40},
+        {"sku": "O", "price": 10},
+        {"sku": "P", "price": 50},
+        {"sku": "Q", "price": 30},
+        {"sku": "R", "price": 50},
+        {"sku": "S", "price": 30},
+        {"sku": "T", "price": 20},
+        {"sku": "U", "price": 40},
+        {"sku": "V", "price": 50},
+        {"sku": "W", "price": 20},
+        {"sku": "X", "price": 90},
+        {"sku": "Y", "price": 10},
+        {"sku": "Z", "price": 50},
     ],
     "offers": [
         {"sku": "A", "multiplier": 3, "offer_value": 130},
         {"sku": "A", "multiplier": 5, "offer_value": 200},
         {"sku": "B", "multiplier": 2, "offer_value": 45},
         {"sku": "F", "multiplier": 3, "offer_value": 20},
+        {"sku": "H", "multiplier": 5, "offer_value": 45},
+        {"sku": "H", "multiplier": 10, "offer_value": 80},
     ],
     "cross_offers": [
         {
@@ -55,7 +77,9 @@ def mock_get_cross_offers_query(skus: list[str]):
 
 class Inventory:
     """Mock model that represents a pseudo ORM output from a database of items"""
+
     def __init__(self, skus: str) -> None:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
+
