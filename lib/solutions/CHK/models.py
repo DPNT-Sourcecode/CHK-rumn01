@@ -85,20 +85,11 @@ class Basket:
                 self.items[char] = inventory.items[char]
 
 
-    @property
-    def undiscounted_total(self):
-        return sum(
-            item.price * self.item_counts[sku]
-            for sku, item in self.items.items()
-        )
 
     @property
-    def applied_offers(self):
-        return [
-            self.inventory.reference_most_favourable_offer(
-                sku=sku, item_count=item_count
-            )
-            for sku, item_count in self.item_counts.items()
-        ]
+    def total(self):
+        for sku, item in self.items.items():
+            item_count = self.item_counts[sku]
+
 
 
