@@ -1,4 +1,3 @@
-from decimal import Decimal
 
 from lib.solutions.CHK.database import (
     mock_get_cross_offers_query,
@@ -8,9 +7,9 @@ from lib.solutions.CHK.database import (
 
 
 class Item:
-    def __init__(self, sku: str, price: Decimal):
+    def __init__(self, sku: str, price: int):
         self.sku: str = sku
-        self.price: Decimal = price
+        self.price: int = price
 
 
 class Offer:
@@ -22,14 +21,14 @@ class Offer:
         item (Item): Item upon which the number of purchases influence the
             offer value
         multiplier (int): Number of items to trigger an offer
-        offer_value (Decimal): Value of the offer when multiplier of items
+        offer_value (int): Value of the offer when multiplier of items
             is reached
     """
 
-    def __init__(self, sku: str, multiplier: int, offer_value: Decimal):
+    def __init__(self, sku: str, multiplier: int, offer_value: int):
         self.sku: str = sku
         self.multiplier: int = multiplier
-        self.offer_value: Decimal = offer_value
+        self.offer_value: int = offer_value
 
 
 class CrossOffer:
@@ -39,7 +38,7 @@ class CrossOffer:
         primary_item_multiplier: int,
         offer_item_sku: str,
         offer_item_multiplier: int,
-        offer_value: Decimal,
+        offer_value: int,
     ):
         """Class to describe an offer applied to when purchases of a primary
         item influence the value calculated on a offer item
@@ -52,14 +51,14 @@ class CrossOffer:
             offer_item (Item): Item for which the value is adjusted based upon
                 the number of primary items purchased
             multiplier (int): Number of primary items to trigger an offer
-            offer_value (Decimal): Value of the offer on the offer item when
+            offer_value (int): Value of the offer on the offer item when
                 the multiplier of primary items is reached
         """
         self.primary_item_sku: str = primary_item_sku
         self.primary_item_multiplier: int = primary_item_multiplier
         self.offer_item_sku: str = offer_item_sku
         self.offer_item_multiplier: int = offer_item_multiplier
-        self.offer_value: Decimal = offer_value
+        self.offer_value: int = offer_value
 
 
 class Inventory:
@@ -77,6 +76,7 @@ class Inventory:
 class Basket:
     items: dict[str, Item] = {}
     item_counts: dict[str, int] = {}
+    item_discounts = dict[str, int]
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
         for char in skus:
@@ -94,10 +94,8 @@ class Basket:
             item.price * self.item_counts[sku]
             for sku, item in self.items.items()
         )
-
-
-
-
-
-
-
+    
+    @property
+    def individual_discounts(self):
+        item_
+        for sku, item in self.items.items()
