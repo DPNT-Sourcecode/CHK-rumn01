@@ -72,11 +72,10 @@ class CrossOffer:
 class Basket:
     """Class to describe the basket that is requested by the list of SKUs"""
 
-    item_counts: dict[str, int] = {}
-
     def __init__(self, skus: str, inventory: "Inventory") -> None:
-        self.inventory = inventory
-        self.items = {}
+        self.inventory: "Inventory" = inventory
+        self.items: dict[str, Item] = {}
+        self.item_counts: dict[str, int] = {}
         for sku in skus:
             if sku not in inventory.items:
                 raise ValueError(f"SKU {sku} is not valid")
@@ -86,16 +85,16 @@ class Basket:
                 self.item_counts[sku] = 1
                 self.items[sku] = inventory.items[sku]
 
-    def calculate_total(self)->int:
+    def calculate_total(self) -> int:
         """Calculates the basket total.
-        
-        This loops through all unique items in the basket to determine all 
+
+        This loops through all unique items in the basket to determine all
         possible totals (given the discounts available) and aggreagtes the best
         value for the customer.
 
         Returns:
             int: Total value of the basket
-        """        
+        """
         total = 0
         for sku, item in self.items.items():
             item_count = self.item_counts[sku]
@@ -130,4 +129,5 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
 
