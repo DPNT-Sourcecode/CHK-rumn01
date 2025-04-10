@@ -63,13 +63,13 @@ class CrossOffer:
 class Inventory:
     def __init__(self, skus: str) -> None:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
-        self.offers = {
-            offer.sku: offer for offer in mock_get_offers_query(skus)
-        }
-        self.cross_offers = {
-            cross_offer.primary_item_sku: cross_offer
-            for cross_offer in mock_get_cross_offers_query(skus)
-        }
+        self.offers = mock_get_offers_query(skus)
+        self.cross_offers = mock_get_cross_offers_query(skus)
+
+    def reference_most_favourable_offer(sku:str, item_count:int):
+        sku_offers = [offer for offer in self.offers if offer.sku == sku]
+        
+        
 
 
 class Basket:
@@ -96,11 +96,12 @@ class Basket:
 
     @property
     def applied_offers(self):
-        applied_offers ={}
+        return 
         for sku, item in self.items():
             item_offers = [
                 offer for offer in self.inventory.offers if offer.sku == sku
             ]
+
 
 
 
