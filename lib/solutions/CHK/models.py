@@ -88,6 +88,15 @@ class Basket:
                 cross_offer.primary_item_multiplier: cross_offer
                 for cross_offer in self.inventory.cross_offers
             }:
-                item.cross_offer = item_cross_offers[max(primary_item_multiplier for primary_item_multiplier in item_cross_offers.keys() if primary_item_multiplier < item.count)]
+                item.cross_offer = item_cross_offers.get(
+                    max(
+                        primary_item_multiplier
+                        for primary_item_multiplier in item_cross_offers.keys()
+                        if primary_item_multiplier < item.basket_count
+                    )
+                )
+            else:
+                item.cross_offer = None
+
 
 
