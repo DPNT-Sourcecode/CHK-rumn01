@@ -1,9 +1,4 @@
-class Item:
-    def __init__(self, sku, price, offers, cross_offers):
-        self.sku = sku
-        self.price = price
-        self.offers = offers
-        self.cross_offers = cross_offers
+
 
     def total_price(self, count):
         return self.price * count
@@ -15,10 +10,7 @@ class Item:
         return sum(offer.value * (count // offer.multiplier) for offer in self.cross_offers)
 
 
-class Offer:
-    def __init__(self, multiplier, value):
-        self.multiplier = multiplier
-        self.value = value
+
 
 
 class CrossOffers:
