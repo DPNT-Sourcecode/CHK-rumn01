@@ -5,8 +5,6 @@ if TYPE_CHECKING:
 
 
 class Item:
-    count = 0
-
     def __init__(self, sku: str, price: int):
         self.sku: str = sku
         self.price: int = price
@@ -111,5 +109,6 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
 
 
