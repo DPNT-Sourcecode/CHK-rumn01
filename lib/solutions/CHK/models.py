@@ -76,7 +76,7 @@ class Inventory:
 class Basket:
     items: dict[str, Item] = {}
     item_counts: dict[str, int] = {}
-    item_discounts = dict[str, int]
+    item_discounts: dict[str, int] ={}
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
         for char in skus:
@@ -97,5 +97,6 @@ class Basket:
     
     @property
     def individual_discounts(self):
-        item_
-        for sku, item in self.items.items()
+        for sku, item in self.items.items():
+            item_count = self.item_counts[sku]
+
