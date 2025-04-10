@@ -1,26 +1,5 @@
 
 
-    def total_price(self, count):
-        return self.price * count
-    
-    def total_offer_price(self, count):
-        return sum(offer.value * (count // offer.multiplier) for offer in self.offers)
-    
-    def total_cross_offer_price(self, count, items):
-        return sum(offer.value * (count // offer.multiplier) for offer in self.cross_offers)
-
-
-
-
-
-class CrossOffers:
-    def __init__(self, item, multiplier, reduction):
-        self.item = item
-        self.multiplier = multiplier
-        self.reduction = reduction
-
-
-
 class CheckoutSolution:
 
     ITEM_TOTAL_CALCULATIONS = {
@@ -79,3 +58,4 @@ class CheckoutSolution:
             )
 
         return total
+
