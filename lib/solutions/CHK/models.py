@@ -131,42 +131,7 @@ class Basket:
                 offer_application_count = (
                     self.item_counts[sku] // offer.multiplier
                 )
-
-            offer_totals = [
-                (
-                    (self.item_counts[sku] // offer.multiplier)
-                    * offer.offer_value
-                )
-                + ((self.item_counts[sku] % offer.multiplier) * item.price)
-                for offer in self.inventory.offers
-                if offer.sku == sku
-            ]
-            cross_offer_totals = [
-                (
-                    (
-                        self.item_counts[cross_offer.primary_item_sku]
-                        // cross_offer.primary_item_multiplier
-                    )
-                    * cross_offer.offer_item_price
-                )
-                + (
-                    self.item_counts[sku]
-                    - (
-                        self.item_counts[cross_offer.primary_item_sku]
-                        // cross_offer.primary_item_multiplier
-                    )
-                )
-                * item.price
-                for cross_offer in self.inventory.cross_offers
-                if cross_offer.offer_item_sku == sku
-            ]
-            total += min([base_total] + offer_totals + cross_offer_totals)
-        return total
-
-
-
-
-
-
-
-
+                item_total += offer.offer_value
+                item_count -= offer_application_count
+            item_total += item_count * item.price
+        return item_total
