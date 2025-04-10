@@ -2,5 +2,12 @@
 
 from lib.solutions.CHK.models import Inventory
 
+mock_database = {
+    'items': {
+        'sku': 'A'
+    }
+}
+
 
 Inventory()
+
