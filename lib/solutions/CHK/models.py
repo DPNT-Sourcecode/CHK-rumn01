@@ -1,4 +1,3 @@
-
 from lib.solutions.CHK.database import (
     mock_get_cross_offers_query,
     mock_get_items_query,
@@ -76,9 +75,9 @@ class Inventory:
 class Basket:
     items: dict[str, Item] = {}
     item_counts: dict[str, int] = {}
-    item_discounts: dict[str, int] ={}
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
+        self.inventory = inventory
         for char in skus:
             if char not in inventory.items:
                 raise ValueError(f"SKU {char} is not valid")
@@ -94,9 +93,12 @@ class Basket:
             item.price * self.item_counts[sku]
             for sku, item in self.items.items()
         )
-    
+
     @property
-    def individual_discounts(self):
-        for sku, item in self.items.items():
-            item_count = self.item_counts[sku]
+    def applied_offers(self):
+        for sku, item in self.items():
+            item_offers = [
+                offer for offer in self.inventory.offers if offer.sku == sku
+            ]
+
 
