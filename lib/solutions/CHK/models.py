@@ -1,6 +1,10 @@
 from decimal import Decimal
 
-from lib.solutions.CHK.database import mock_get_cross_offers_query, mock_get_items_query, mock_get_offers_query
+from lib.solutions.CHK.database import (
+    mock_get_cross_offers_query,
+    mock_get_items_query,
+    mock_get_offers_query,
+)
 
 
 class Item:
@@ -69,10 +73,13 @@ class Inventory:
             for cross_offer in mock_get_cross_offers_query(skus)
         }
 
+
 class Basket:
     def __init__(self, skus) -> None:
+        self.items = {}
         for char in skus:
-            if char not in items:
-                return -1
-            items[char] += 1
+            if char not in self.items:
+                raise ValueError
+            self.items[char] += 1
+
 
