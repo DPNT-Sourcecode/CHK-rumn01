@@ -18,6 +18,8 @@ class Offer:
     This could take the form 3{item} for {total_price}
 
     Args:
+        item (Item): Item upon which the number of purchases influence the 
+            offer value
         multiplier (int): Number of items to trigger an offer
         offer_value (Decimal): Value of the offer when multiplier of items
             is reached
@@ -63,6 +65,7 @@ class Inventory:
         self.items: list[Item] = items
         self.offers: list[Offer] = offers
         self.cross_offers: list[CrossOffer] = cross_offers
+
 
 
 
