@@ -71,6 +71,8 @@ class Inventory:
         offers_ordered_by_multiplier = sorted(
             self.offers, key=lambda offer: offer.multiplier
         )
+        for offer in offers_ordered_by_multiplier:
+            
 
 
 class Basket:
@@ -103,3 +105,4 @@ class Basket:
             )
             for sku, item_count in self.item_counts.items()
         ]
+
