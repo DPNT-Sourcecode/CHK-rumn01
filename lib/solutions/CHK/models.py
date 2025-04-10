@@ -1,8 +1,7 @@
-from lib.solutions.CHK.database import (
-    mock_get_cross_offers_query,
-    mock_get_items_query,
-    mock_get_offers_query,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from lib.solutions.CHK.database import Inventory
 
 
 class Item:
@@ -62,16 +61,9 @@ class CrossOffer:
         self.offer_item_price: int = offer_item_price
 
 
-class Inventory:
-    def __init__(self, skus: str) -> None:
-        self.items = {item.sku: item for item in mock_get_items_query(skus)}
-        self.offers = mock_get_offers_query(skus)
-        self.cross_offers = mock_get_cross_offers_query(skus)
-
-
 class Basket:
 
-    def __init__(self, skus: str, inventory: Inventory) -> None:
+    def __init__(self, skus: str, inventory: 'Inventory') -> None:
         self.inventory = inventory
         self.item_counts = {}
         self.items = {}
@@ -119,3 +111,4 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+

@@ -2,6 +2,7 @@
 
 from lib.solutions.CHK.models import CrossOffer, Offer, Item
 
+
 mock_database = {
     "items": [
         {"sku": "A", "price": 50},
@@ -48,8 +49,11 @@ def mock_get_cross_offers_query(skus: list[str]):
         if cross_offer["primary_item_sku"] in skus
         and cross_offer["offer_item_sku"] in skus
     ]
+
+
 class Inventory:
     def __init__(self, skus: str) -> None:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
+
