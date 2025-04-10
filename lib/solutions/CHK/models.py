@@ -86,13 +86,11 @@ class Basket:
 
     def calculate_total(self):
         total = 0
-        for sku,item in self.items.items():
+        for sku, item in self.items.items():
             item_count = self.item_counts[sku]
-
-
-
-
-
-
-
-
+            base_total = item.price * item_count
+            cross_offers = [
+                cross_offer
+                for cross_offer in self.inventory.cross_offers
+                if cross_offer.offer_item_sku == sku
+            ]
