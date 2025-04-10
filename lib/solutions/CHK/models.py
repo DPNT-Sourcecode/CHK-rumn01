@@ -67,7 +67,7 @@ class Basket:
         self.inventory = inventory
         self.item_counts = {}
         self.items = {}
-        for sku in set(skus):
+        for sku in skus:
             if sku not in inventory.items:
                 raise ValueError(f"SKU {sku} is not valid")
             if sku in self.item_counts:
@@ -111,4 +111,5 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
 
