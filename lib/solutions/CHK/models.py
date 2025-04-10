@@ -6,7 +6,7 @@ from lib.solutions.CHK.database import (
 
 
 class Item:
-    count = 0
+    basket_count = 0
     offer = None
     cross_offer = None
 
@@ -80,14 +80,14 @@ class Basket:
             if sku not in inventory.items:
                 raise ValueError(f"SKU {sku} is not valid")
             if item := self.items.get(sku):
-                item.count += 1
+                item.basket_count += 1
             else:
                 self.items[sku] = inventory.items[sku]
         for item in self.items:
-            if item_cross_offers := list(
-                filter(
-                    lambda cross_offer: cross_offer.primary_item_sku,
-                    self.inventory.cross_offers,
-                )
-            )
+            if item_cross_offers := {
+                cross_offer.primary_item_multiplier: cross_offer
+                for cross_offer in self.inventory.cross_offers
+            }:
+                item.cross_offer = item_cross_offers[max(primary_item_multiplier for primary_item_multiplier in item_cross_offers.keys() if primary_item_multiplier < item.count)]
+
 
