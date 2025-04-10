@@ -84,6 +84,10 @@ class Basket:
                 raise ValueError(f"SKU {char} is not valid")
             if char in self.item_counts:
                 self.item_counts[char] +=1
+            else:
+                self.item_counts[char] = 1
+                self.items[char] = inventory.items[char]
+
 
 
 
