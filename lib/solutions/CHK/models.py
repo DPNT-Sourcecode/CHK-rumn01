@@ -33,5 +33,3 @@ class CrossOffer:
         self.reduction = reduction
 
 
-
-
