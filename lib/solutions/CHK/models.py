@@ -75,8 +75,8 @@ class Multibuy:
     This could take the form: `buy any 3 of (S,T,X,Y,Z) for 45`
 
     Args:
-        skus (list[str]): SKU of an item upon which the number of purchases influence
-            the offer value
+        skus (list[str]): List of SKUs of items upon which the number of 
+            purchases influence the offer value
         multiplier (int): Number of items to trigger an offer
         offer_value (int): Value of the offer when multiplier of items is
             reached
@@ -126,7 +126,8 @@ class Basket:
             int: Total value of the basket
         """
         total = 0
-        for sku, item in self.items.items():
+        for item in self.items.items():
+            sku = item.sku
             item_count = self.item_counts[sku]
             item_total = 0
             item_cross_offers = sorted(
@@ -170,4 +171,5 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
