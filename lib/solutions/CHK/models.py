@@ -88,9 +88,20 @@ class Basket:
     def calculate_total(self) -> int:
         """Calculates the basket total.
 
-        This loops through all unique items in the basket to determine all
-        possible totals (given the discounts available) and aggreagtes the best
-        value for the customer.
+        This loops through all unique items in the basket to calculate
+        discounts by diminishing the number of items in question in the
+        following hierarchy:
+
+        1. Cross Offers (in descending order of number of discounted items)
+        2. Offers (in descending order of number of discounted items)
+        3. All remaining items not under offer
+
+        This relates to the following business logic:
+         - The policy of the supermarket is to always favor the customer when
+         applying special offers.
+         - Offers involving multiple items always give a better discount than
+           offers containing fewer items.
+
 
         Returns:
             int: Total value of the basket
@@ -108,8 +119,7 @@ class Basket:
                 reverse=True,
             ):
                 cross_offer_application_count = (
-                    self.item_counts[cross_offer.primary_item_sku]
-                    // cross_offer.primary_item_multiplier
+                    item_count // cross_offer.primary_item_multiplier
                 )
                 item_total += (
                     cross_offer_application_count
@@ -134,5 +144,6 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
 
