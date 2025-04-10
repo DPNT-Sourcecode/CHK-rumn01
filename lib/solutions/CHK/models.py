@@ -96,9 +96,11 @@ class Basket:
 
     @property
     def applied_offers(self):
+        applied_offers ={}
         for sku, item in self.items():
             item_offers = [
                 offer for offer in self.inventory.offers if offer.sku == sku
             ]
+
 
 
