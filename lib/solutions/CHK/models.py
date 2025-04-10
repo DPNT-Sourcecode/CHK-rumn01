@@ -7,6 +7,8 @@ from lib.solutions.CHK.database import (
 
 class Item:
     count = 0
+    offer = None
+    cross_offer = None
 
     def __init__(self, sku: str, price: int):
         self.sku: str = sku
@@ -74,14 +76,13 @@ class Basket:
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
         self.inventory = inventory
-        for char in skus:
-            if char not in inventory.items:
-                raise ValueError(f"SKU {char} is not valid")
-            if char in self.item_counts:
-                self.item_counts[char] += 1
+        for sku in skus:
+            if sku not in inventory.items:
+                raise ValueError(f"SKU {sku} is not valid")
+            if item := self.items.get(sku):
+                item.count += 1
             else:
-                self.item_counts[char] = 1
-                self.items[char] = inventory.items[char]
+                self.items[sku] = inventory.items[sku]
 
     @property
     def total(self):
@@ -94,6 +95,7 @@ class Basket:
                 if cross_offer.sku == sku
             ]:
                 pass
+
 
 
 
