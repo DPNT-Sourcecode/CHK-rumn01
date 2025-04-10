@@ -19,4 +19,3 @@ class CheckoutSolution:
             return -1
 
         return basket.total
-
