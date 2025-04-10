@@ -107,7 +107,12 @@ class Basket:
                 key=lambda cross_offer: cross_offer.offer_item_multiplier,
                 reverse=True,
             ):
-                pass
+                cross_offer_application_count = (
+                    self.item_counts[cross_offer.primary_item_sku]
+                    // cross_offer.primary_item_multiplier
+                )
+                item_total += 
+                item_count -= cross_offer_application_count * cross_offer.offer_item_multiplier
             base_total = item.price * item_count
 
             offer_totals = [
@@ -140,6 +145,7 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
 
 
 
