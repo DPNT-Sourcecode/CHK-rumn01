@@ -106,11 +106,20 @@ class Basket:
                     )
                     * cross_offer.offer_item_price
                 )
-                + ((self.item_counts[sku])) * item.price
+                + (
+                    self.item_counts[sku]
+                    - (
+                        self.item_counts[cross_offer.primary_item_sku]
+                        // cross_offer.primary_item_multiplier
+                    )
+                )
+                * item.price
                 for cross_offer in self.inventory.cross_offers
                 if cross_offer.offer_item_sku == sku
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
+        return total
+
 
 
 

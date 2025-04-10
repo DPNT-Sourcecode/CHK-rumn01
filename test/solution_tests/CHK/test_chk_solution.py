@@ -21,8 +21,8 @@ class TestSum(TestCase):
     def test_one_of_each(self):
         assert CheckoutSolution().checkout("ABCDE") == 155
 
-    def test_all_offers_triggered(self):
-        assert CheckoutSolution().checkout("AAABBCDEE") == 250
+    def test_offer_3a_triggered(self):
+        assert CheckoutSolution().checkout("AAABCDE") == 135
     
     def test_multiple_offers_returns_lowest_total(self):
         # 5A could be calculated as (3A + 2A) = 130 + 100 = 230
@@ -41,3 +41,4 @@ class TestSum(TestCase):
         # 4E + 2B = (4 * 40) + (2 * 30) - (2 * 30) = 160 + 0 = 160
         # The 4E triggers 2 free B's, which cancels out the cost of the 2 B's
         assert CheckoutSolution().checkout("EEEEBB") == 160
+

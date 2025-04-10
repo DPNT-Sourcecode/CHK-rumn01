@@ -1,5 +1,3 @@
-
-
 from lib.solutions.CHK.models import Basket, Inventory
 
 
@@ -18,4 +16,5 @@ class CheckoutSolution:
         except ValueError:
             return -1
 
-        return basket.total
+        return basket.calculate_total()
+
