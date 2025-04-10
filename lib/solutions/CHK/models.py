@@ -30,19 +30,25 @@ class Offer:
 
 class CrossOffer:
     def __init__(
-        self, primary_item: str, offer_item: Item, multiplier: int, reduction
+        self, primary_item: Item, offer_item: Item, multiplier: int, reduction
     ):
         """Class to describe an offer applied to when purchases of a primary
-        item influence the totals calculated from a offer item
+        item influence the value calculated on a offer item
 
-        This could take the form 2{primary_item} = 1 {offer_item} {total} 
+        This could take the form 2{primary_item} = 1 {offer_item} {value}
 
         Args:
-            multiplier (int): Number of items to trigger an offer
-            offer_value (Decimal): Value of the offer when multiplier of items
-                is reached
+            primary_item (Item): Item upon which the number of purchases 
+                influence the offer item
+            offer_item (Item): Item for which the value is adjusted based upon 
+                the number of primary items purchased
+            multiplier (int): Number of primary items to trigger an offer
+            offer_value (Decimal): Value of the offer on the offer item when 
+                the multiplier of primary items is reached
         """
-        self.primary_item: Item = item
+        self.primary_item: Item = primary_item
+        self.offer_item: Item = offer_item
         self.multiplier = multiplier
         self.reduction = reduction
+
 
