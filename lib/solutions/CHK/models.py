@@ -6,6 +6,8 @@ from lib.solutions.CHK.database import (
 
 
 class Item:
+    count = 0
+
     def __init__(self, sku: str, price: int):
         self.sku: str = sku
         self.price: int = price
@@ -67,11 +69,8 @@ class Inventory:
         self.cross_offers = mock_get_cross_offers_query(skus)
 
 
-
-
 class Basket:
     items: dict[str, Item] = {}
-    item_counts: dict[str, int] = {}
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
         self.inventory = inventory
@@ -84,13 +83,17 @@ class Basket:
                 self.item_counts[char] = 1
                 self.items[char] = inventory.items[char]
 
-
-
     @property
     def total(self):
         total = 0
         for sku, item in self.items.items():
             item_count = self.item_counts[sku]
+            if cross_offers := [
+                cross_offer
+                for cross_offer in self.inventory.cross_offers
+                if cross_offer.sku == sku
+            ]:
+                pass
 
 
 
