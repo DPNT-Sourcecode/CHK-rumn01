@@ -10,6 +10,8 @@ class Item:
 class Basket:
     def __init__(self, items: list[Item]) -> None:
         pass
+
+
 class Offer:
     """Class to describe an offer applied to a single item
 
@@ -27,9 +29,20 @@ class Offer:
 
 
 class CrossOffer:
-    def __init__(self, primary_item: str, offer_item:Item,multiplier: int, reduction):
-        self.item: str = item
+    def __init__(
+        self, primary_item: str, offer_item: Item, multiplier: int, reduction
+    ):
+        """Class to describe an offer applied to when purchases of a primary
+        item influence the totals calculated from a offer item
+
+        This could take the form 2{primary_item} = 1 {offer_item} {total} 
+
+        Args:
+            multiplier (int): Number of items to trigger an offer
+            offer_value (Decimal): Value of the offer when multiplier of items
+                is reached
+        """
+        self.primary_item: Item = item
         self.multiplier = multiplier
         self.reduction = reduction
-
 
