@@ -88,8 +88,11 @@ class Basket:
 
     @property
     def total(self):
+        total = 0
         for sku, item in self.items.items():
             item_count = self.item_counts[sku]
+
+
 
 
 
