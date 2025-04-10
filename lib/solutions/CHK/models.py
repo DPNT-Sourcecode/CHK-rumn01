@@ -70,13 +70,11 @@ class Inventory:
 
 
 class Basket:
-    items: dict[str, Item] = {}
-    item_counts: dict[str, int] = {}
-    basket_cross_offers: dict[str, Offer]
-    basket_offers: dict[str, Offer]
 
     def __init__(self, skus: str, inventory: Inventory) -> None:
         self.inventory = inventory
+        self.item_counts = {}
+        self.items = {}
         for sku in set(skus):
             if sku not in inventory.items:
                 raise ValueError(f"SKU {sku} is not valid")
