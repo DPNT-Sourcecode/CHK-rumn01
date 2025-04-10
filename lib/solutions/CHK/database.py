@@ -42,6 +42,8 @@ mock_database = {
         {"sku": "K", "multiplier": 2, "offer_value": 150},
         {"sku": "P", "multiplier": 5, "offer_value": 200},
         {"sku": "Q", "multiplier": 3, "offer_value": 80},
+        {"sku": "U", "multiplier": 4, "offer_value": 120},
+        {"sku": "V", "multiplier": 2, "offer_value": 90},
     ],
     "cross_offers": [
         {
@@ -55,6 +57,13 @@ mock_database = {
             "primary_item_sku": "N",
             "primary_item_multiplier": 3,
             "offer_item_sku": "M",
+            "offer_item_multiplier": 1,
+            "offer_item_price": 0,
+        },
+        {
+            "primary_item_sku": "R",
+            "primary_item_multiplier": 3,
+            "offer_item_sku": "Q",
             "offer_item_multiplier": 1,
             "offer_item_price": 0,
         }
@@ -92,6 +101,7 @@ class Inventory:
         self.items = {item.sku: item for item in mock_get_items_query(skus)}
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
+
 
 
 
