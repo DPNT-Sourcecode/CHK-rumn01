@@ -6,11 +6,12 @@ if TYPE_CHECKING:
 
 class Item:
     """Class to describe an Item that exists in the inventory
-    
+
     Args:
         sku (str): SKU of the item
         price (int): Unit price of one item (without any discounts)
     """
+
     def __init__(self, sku: str, price: int):
         self.sku: str = sku
         self.price: int = price
@@ -25,7 +26,7 @@ class Offer:
         sku (str): SKU of an item upon which the number of purchases influence
             the offer value
         multiplier (int): Number of items to trigger an offer
-        offer_value (int): Value of the offer when multiplier of items is 
+        offer_value (int): Value of the offer when multiplier of items is
             reached
     """
 
@@ -50,11 +51,11 @@ class CrossOffer:
         This could take the form 2{primary_item} = 1 {offer_item} {value}
 
         Args:
-            primary_item_sku (str): SKU of the item upon which the number of 
+            primary_item_sku (str): SKU of the item upon which the number of
                 purchases influence the offer item
             primary_item_multiplier (int): Multiples of the primary item that
                 trigger the discount
-            offer_item_sku (str): SKU of the item for which the value is 
+            offer_item_sku (str): SKU of the item for which the value is
                 adjusted based upon the number of primary items purchased
             offer_item_multiplier (int): Number of primary items to trigger an
                 offer
@@ -68,12 +69,13 @@ class CrossOffer:
         self.offer_item_price: int = offer_item_price
 
 
-class Basket: 
-    """Class to describe the """
+class Basket:
+    """Class to describe the basket that is requested by the list of SKUs"""
 
-    def __init__(self, skus: str, inventory: 'Inventory') -> None:
+    item_counts: dict[str, int] = {}
+
+    def __init__(self, skus: str, inventory: "Inventory") -> None:
         self.inventory = inventory
-        self.item_counts = {}
         self.items = {}
         for sku in skus:
             if sku not in inventory.items:
@@ -84,7 +86,16 @@ class Basket:
                 self.item_counts[sku] = 1
                 self.items[sku] = inventory.items[sku]
 
-    def calculate_total(self):
+    def calculate_total(self)->int:
+        """Calculates the basket total.
+        
+        This loops through all unique items in the basket to determine all 
+        possible totals (given the discounts available) and aggreagtes the best
+        value for the customer.
+
+        Returns:
+            int: Total value of the basket
+        """        
         total = 0
         for sku, item in self.items.items():
             item_count = self.item_counts[sku]
@@ -119,3 +130,4 @@ class Basket:
             ]
             total += min([base_total] + offer_totals + cross_offer_totals)
         return total
+
