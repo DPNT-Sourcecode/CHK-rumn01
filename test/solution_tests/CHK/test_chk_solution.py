@@ -97,5 +97,6 @@ class TestSum(TestCase):
         assert CheckoutSolution().checkout("EEEEBB") == 160
 
     def test_multibuy(self):
-        assert CheckoutSolution().checkout("SSTTXXYYZZ") == 135+17
+        assert CheckoutSolution().checkout("SSTTXXYYZZ") == 152
+
 

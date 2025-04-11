@@ -106,7 +106,7 @@ def mock_get_multibuys_query(skus: list[str]):
     return [
         Multibuy(**multibuy)
         for multibuy in mock_database["multibuys"]
-        if multibuy["sku"] in skus
+        if set(multibuy["skus"]) & set(skus)
     ]
 
 
@@ -118,3 +118,4 @@ class Inventory:
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
         self.multibuys = mock_get_multibuys_query(skus)
+
