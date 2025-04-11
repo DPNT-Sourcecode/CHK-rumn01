@@ -63,7 +63,7 @@ class TestSum(TestCase):
 
     def test_offer_r_triggered_1(self):
         assert CheckoutSolution().checkout("RRRRQQQQ") == 280
-    
+
     def test_offer_r_triggered_2(self):
         assert CheckoutSolution().checkout("RRRRQQQ") == 260
 
@@ -100,10 +100,10 @@ class TestSum(TestCase):
         assert CheckoutSolution().checkout("SSTTXXYYZZ") == 152
 
     def test_multibuy_2(self):
-        assert CheckoutSolution().checkout("SSSSTTXXYYZZ") == 45*4
+        assert CheckoutSolution().checkout("SSSSTTXXYYZZ") == 45 * 4
 
     def test_multibuy_3(self):
-        assert CheckoutSolution().checkout("SSSSTTYYZZ") == 45*3 + 20*2
+        assert CheckoutSolution().checkout("SSSSTTYYZZZ") == 45 * 3 + 20 * 2
 
 
 
