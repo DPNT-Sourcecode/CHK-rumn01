@@ -118,7 +118,3 @@ class Inventory:
         self.offers = mock_get_offers_query(skus)
         self.cross_offers = mock_get_cross_offers_query(skus)
         self.multibuys = mock_get_multibuys_query(skus)
-
-
-
-

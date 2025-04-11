@@ -127,11 +127,19 @@ class Basket:
         """
         total = 0
         for multibuy in self.inventory.multibuys:
-            multibuy_item_count = sum(
+            permissible_item_count = sum(
                 self.item_counts[sku] for sku in multibuy.skus
             )
-            multibuys_applied = multibuy_item_count //multibuy.multiplier
+            multibuys_applied = permissible_item_count // multibuy.multiplier
             total += multibuys_applied * multibuy.offer_value
+            multibuy_item_count = multibuys_applied * multibuy.multiplier
+            for multibuy_item in sorted(
+                self.items.values(),
+                key=lambda cross_offer: cross_offer.offer_item_multiplier,
+                reverse=True,
+            ):
+                pass
+
         for item in self.items.values():
             sku = item.sku
             item_count = self.item_counts[sku]
@@ -177,9 +185,3 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
-
-
-
-
-
-
