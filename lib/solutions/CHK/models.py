@@ -138,8 +138,13 @@ class Basket:
                 key=lambda item: item.price,
                 reverse=True,
             ):
-                if multibuys_applied > self.item_counts[multibuy_item.sku]:
-                    self.item_counts[multibuy_item.sku]=0
+                if multibuys_applied >= self.item_counts[multibuy_item.sku]:
+                    multibuys_applied -= self.item_counts[multibuy_item.sku]
+                    self.item_counts[multibuy_item.sku] = 0
+                else:
+                    self.item_counts[multibuy_item.sku] -= multibuys_applied
+                    multibuys_applied = 0
+                    break
 
         for item in self.items.values():
             sku = item.sku
@@ -186,4 +191,5 @@ class Basket:
             item_total += item_count * item.price
             total += item_total
         return total
+
 
